@@ -1,7 +1,5 @@
-# Usage
-```
-library identifier: 'wacul-jenkins-pipeline-libraries@master', retriever: modernSCM([$class: 'GitSCMSource', remote: 'https://github.com/wacul/jenkins-pipeline-libraries.git'])
-script {
-    ecr.addTag region: 'us-east-1', awsRegistryId: 'number', repository: 'repo', sourceTag: 'stag', addTag: 'tag'
-}
-```
+
+<strong>addTag region: 'us-east-1', awsRegistryId: 'awsregistrynumber', repository: 'repo', sourceTag: 'sourcetag', addTag: 'tag'</strong>
+
+<p>ecr adding tag.</p>
+
