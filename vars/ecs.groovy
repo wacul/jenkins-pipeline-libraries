@@ -1,12 +1,12 @@
 def deploy(Map settings) {
     def runOptions = ""
-    String servicesYaml = settings.get('services-yaml', null)
+    String servicesYaml = settings.get('servicesYaml', null)
     if (!servicesYaml) {
-        error("'services-yaml' parameter not found. ")
+        error("'servicesYaml' parameter not found. ")
     }
     runOptions = runOptions + " --services-yaml ${servicesYaml}"
 
-    boolean taskDefinitionConfigEnv = settings.get('task-definition-config-env', true)
+    boolean taskDefinitionConfigEnv = settings.get('taskDefinitionConfigEnv', true)
     if (!taskDefinitionConfigEnv) {
         runOptions = runOptions + " --no-task-definition-config-env"
     }
@@ -14,39 +14,39 @@ def deploy(Map settings) {
     String region = settings.get('region', 'us-east-1')
     runOptions = runOptions + " --region ${region}"
 
-    String templateGroup = settings.get('template-group', null)
+    String templateGroup = settings.get('templateGroup', null)
     if (!templateGroup) {
         error("'template-group' parameter not found. ")
     }
     runOptions = runOptions + " --template-group ${templateGroup}"
 
-    String deployServiceGroup = settings.get('deploy-service-group', null)
+    String deployServiceGroup = settings.get('deployServiceGroup', null)
     if (deployServiceGroup) {
         runOptions = runOptions + " --deploy-service-group ${deployServiceGroup}"
     }
 
-    String threadsCount = settings.get('threads-count', null)
+    String threadsCount = settings.get('threadsCount', null)
     if (threadsCount) {
         runOptions = runOptions + " --threads-count ${threadsCount}"
     }
 
-    String serviceWaitMaxAttempts = settings.get('service-wait-max-attempts', null)
+    String serviceWaitMaxAttempts = settings.get('serviceWaitMaxAttempts', null)
     if (serviceWaitMaxAttempts) {
         runOptions = runOptions + " --service-wait-max-attempts ${serviceWaitMaxAttempts}"
     }
-    String serviceWaitDelay = settings.get('service-wait-delay', null)
+    String serviceWaitDelay = settings.get('serviceWaitDelay', null)
     if (serviceWaitDelay) {
         runOptions = runOptions + " --service-wait-delay ${serviceWaitDelay}"
     }
-    boolean serviceZeroKeep = settings.get('service-zero-keep', true)
+    boolean serviceZeroKeep = settings.get('serviceZeroKeep', true)
     if (!serviceZeroKeep) {
         runOptions = runOptions + " --no-service-zero-keep"
     }
-    boolean deleteUnusedService = settings.get('delete-unused-service', true)
+    boolean deleteUnusedService = settings.get('deleteUnusedService', true)
     if (!deleteUnusedService) {
         runOptions = runOptions + " --no-delete-unused-service"
     }
-    boolean stopBeforeDeploy = settings.get('stop-before-deploy', true)
+    boolean stopBeforeDeploy = settings.get('stopBeforeDeploy', true)
     if (!stopBeforeDeploy) {
         runOptions = runOptions + " --no-stop-before-deploy"
     }
@@ -60,18 +60,18 @@ def deploy(Map settings) {
 def testTemplates(Map settings) {
     String runOptions = ""
 
-    String servicesYaml = settings.get('services-yaml', null)
+    String servicesYaml = settings.get('servicesYaml', null)
     if (!servicesYaml) {
         error("'services-yaml' parameter not found. ")
     }
     runOptions = runOptions + " --services-yaml ${servicesYaml}"
 
-    boolean taskDefinitionConfigEnv = settings.get('task-definition-config-env', true)
+    boolean taskDefinitionConfigEnv = settings.get('taskDefinitionConfigEnv', true)
     if (!taskDefinitionConfigEnv) {
         runOptions = runOptions + " --no-task-definition-config-env"
     }
 
-    String environmentYamlDir = settings.get('environment-yaml-dir', null)
+    String environmentYamlDir = settings.get('environmentYamlDir', null)
     if (!environmentYamlDir) {
         error("'environment-yaml-dir' parameter not found. ")
     }

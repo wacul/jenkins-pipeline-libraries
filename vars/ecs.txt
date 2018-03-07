@@ -1,3 +1,3 @@
 
-<strong>ecs.deploy region: 'us-east-1', 'services-yaml': '/path/file.yml', 'environment-yaml': '/path/conf/file.yml', 'template-group': 'template-group-name', deploy-service-group: 'servicegroup'</strong>
-<strong>ecs.test-templates region: 'us-east-1', 'services-yaml': '/path/file.yml', 'environment-yaml-dir': '/path/confdir/'</strong>
+<strong>ecs.deploy region: 'us-east-1', servicesYaml: '/path/file.yml', environmentYaml: '/path/conf/file.yml', templateGroup: 'template-group-name', deployServiceGroup: 'servicegroup'</strong>
+<strong>ecs.test-templates region: 'us-east-1', servicesYaml: '/path/file.yml', environmentYamlDir: '/path/confdir/'</strong>
