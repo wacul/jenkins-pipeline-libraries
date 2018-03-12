@@ -34,5 +34,4 @@ def addTag(Map settings) {
                 --image-tag "${addTag}" \
                 --image-manifest \'${imageManifest}\'
         """
-    }
 }
