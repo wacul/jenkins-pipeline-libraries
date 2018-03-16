@@ -6,6 +6,12 @@ def deploy(Map settings) {
     }
     runOptions = runOptions + " --services-yaml ${servicesYaml}"
 
+    String environmentYaml = settings.get('environmentYaml', null)
+    if (!environmentYaml) {
+        error("'environment-yaml' parameter not found. ")
+    }
+    runOptions = runOptions + " --environment-yaml ${environmentYaml}"
+
     boolean taskDefinitionConfigEnv = settings.get('taskDefinitionConfigEnv', true)
     if (!taskDefinitionConfigEnv) {
         runOptions = runOptions + " --no-task-definition-config-env"
