@@ -26,7 +26,7 @@ def addTag(Map settings) {
                 --query images[].imageManifest \
                 --output text|head -c -1
         """
-    if (imageManifest?.trim()) {
+    if (!imageManifest?.trim()) {
         error("ECR repository Image tag not found.")
     }
     sh script: """
