@@ -26,12 +26,15 @@ def addTag(Map settings) {
                 --query images[].imageManifest \
                 --output text|head -c -1
         """
-        sh script: """
-            aws ecr put-image \
-                --region "${region}" \
-                --registry-id "${awsRegistryId}" \
-                --repository-name "${repository}" \
-                --image-tag "${addTag}" \
-                --image-manifest \'${imageManifest}\'
-        """
+    if (imageManifest?.trim()) {
+        error("ECR repository Image tag not found.")
+    }
+    sh script: """
+        aws ecr put-image \
+            --region "${region}" \
+            --registry-id "${awsRegistryId}" \
+            --repository-name "${repository}" \
+            --image-tag "${addTag}" \
+            --image-manifest \'${imageManifest}\'
+    """
 }
