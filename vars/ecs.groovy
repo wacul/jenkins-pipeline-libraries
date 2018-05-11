@@ -56,7 +56,9 @@ def deploy(Map settings) {
     if (!stopBeforeDeploy) {
         runOptions = runOptions + " --no-stop-before-deploy"
     }
-    docker.image('quay.io/wacul/aws-ecs').inside('--entrypoint ""') {
+    def awsEcs = docker.image('quay.io/wacul/aws-ecs')
+    awsEcs.pull()
+    awsEcs.inside('--entrypoint ""') {
         sh "python3 /app/main.py service ${runOptions}"
     }
 }
