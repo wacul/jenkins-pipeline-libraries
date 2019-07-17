@@ -29,7 +29,7 @@ def addTag(Map settings) {
     if (!imageManifest?.trim()) {
         error("ECR repository Image tag not found.")
     }
-    sh script: """
+    def put-image = """
         aws ecr put-image \
             --region "${region}" \
             --registry-id "${awsRegistryId}" \
@@ -37,4 +37,9 @@ def addTag(Map settings) {
             --image-tag "${addTag}" \
             --image-manifest \'${imageManifest}\'
     """
+    def proc = put-image.execute()
+    proc.waitFor()
+    if (proc.exitValue() != 0 && !proc.err.text.contains('ImageAlreadyExistsException')) {
+        throw new Exception(proc.err.text)
+    }
 }
