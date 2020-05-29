@@ -56,7 +56,7 @@ def deploy(Map settings) {
     if (!stopBeforeDeploy) {
         runOptions = runOptions + " --no-stop-before-deploy"
     }
-    def awsEcs = docker.image('quay.io/wacul/aws-ecs')
+    def awsEcs = docker.image('wacul/aws-ecs')
     awsEcs.pull()
     awsEcs.inside('--entrypoint ""') {
         sh "python3 /app/main.py service ${runOptions}"
@@ -83,7 +83,7 @@ def testTemplates(Map settings) {
     }
     runOptions = runOptions + " --environment-yaml-dir ${environmentYamlDir}"
 
-    docker.image('quay.io/wacul/aws-ecs').inside('--entrypoint ""') {
+    docker.image('wacul/aws-ecs').inside('--entrypoint ""') {
         sh "python3 /app/main.py test-templates ${runOptions}"
     }
 }
